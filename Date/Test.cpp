@@ -262,16 +262,38 @@ template <class T>
 T fun(T x, T y) {
 	return x * x + y * y;
 }
+//int main()
+//{
+//	//PAT(*ad)[3];
+//	//PAT a;
+//	//fun(1,2);
+//	//fun(1.0, 2.0);
+//	//fun(1.0, 2);
+//	//fun(1, 2);
+//	PAT a(4), b(5), c[3], * p[2] = { &a,&b };
+//
+//}
+
+
+//new ºÍ delete
+
 int main()
 {
-	//PAT(*ad)[3];
-	//PAT a;
-	//fun(1,2);
-	//fun(1.0, 2.0);
-	//fun(1.0, 2);
-	//fun(1, 2);
-	PAT a(4), b(5), c[3], * p[2] = { &a,&b };
+	//int* p1 = new int(1);
+	//int* p2 = new int[10];
+	//int* p3 = p1;
+	//delete(p1);
+	//delete(p3);
+	//int* p1 = (int*)malloc(sizeof(int) * 10);
+	//delete(p1);
+	//int* p1 = new int;
+	//cout << *p1;
+	//int a[10];
+	//cout << a[0] << endl;
+	int a1[10] = { 0 };
+	cout << a1[2];
+	delete[] a1;
+
+
 
 }
-
-
