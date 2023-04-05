@@ -108,26 +108,143 @@ private:
 //}
 
 
-int main() {
-	size_t size = 0; 
-	
-	try {
-		while (1)
-		{
-			int* p1 = (int*)malloc(1024 * 1024 * 4);
-			if (p1 == nullptr)
-				break;
-			size += 1024 * 1024 * 4;
-			cout << p1 << endl;
+//int main() {
+//	size_t size = 0; 
+//	
+//	try {
+//		while (1)
+//		{
+//			int* p1 = (int*)malloc(1024 * 1024 * 4);
+//			if (p1 == nullptr)
+//				break;
+//			size += 1024 * 1024 * 4;
+//			cout << p1 << endl;
+//
+//		}
+//	}
+//	catch(const exception& e)
+//	{
+//		cout << e.what() << endl;
+//	}
+//
+//
+//	cout << size << endl;
+//	cout << size / 1024 / 1024 << "MB" << endl;
+//}
+//#include <iostream>
+//#include <stack>
+//#include <math.h>
+//#include <queue>
+//using namespace std;
+//int main() {
+//    int n, m;
+//    cin >> n >> m;
+//    if (m == n) {
+//        cout << 0;
+//    }
+//    else {
+//        queue<int> qu1;
+//        queue<int> qu2;
+//
+//        for (int j = sqrt(n); j >= 2; j--) {
+//            qu1.push(j + n);
+//        }
+//
+//        int flag = 1;
+//        int res = 1;
+//
+//        while (!qu1.empty() || !qu2.empty()) {
+//            while (!qu1.empty() && flag) {
+//                int step = qu1.front();
+//                qu1.pop();
+//
+//                for (int j = 2; j <= sqrt(step); j++) {
+//                    if (step % j == 0) {
+//                        if ((step / j) + step == m || (j + step) == m) {
+//                            flag = 0;
+//                            res++;
+//                            break;
+//                        }
+//                        if ((step / j) + step < m) {
+//                            qu2.push((step / j) + step);
+//                        }
+//                        if (j + step < m) {
+//                            qu2.push(j + step);
+//                        }
+//                    }
+//                }
+//
+//            }
+//            if (flag)
+//                res++;
+//            else
+//                break;
+//            while (!qu2.empty() && flag) {
+//                int step = qu2.front();
+//                qu2.pop();
+//
+//                for (int j = 2; j <= sqrt(step); j++) {
+//                    if (step % j == 0)
+//                    {
+//                        if ((step / j) + step == m || (j + step) == m) {
+//                            flag = 0;
+//                            res++;
+//                            break;
+//                        }
+//                        if ((step / j) + step < m) {
+//                            qu1.push((step / j) + step);
+//                        }
+//                        if (j + step < m) {
+//                            qu1.push(j + step);
+//                        }
+//                    }
+//                }
+//            }
+//            if (flag)
+//                res++;
+//            else
+//                break;
+//        }
+//        cout << res;
+//    }
+//}
 
-		}
-	}
-	catch(const exception& e)
+
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int n, m;
+	cin >> n >> m;
+	vector<int> step(m + 1, INT_MAX);
+	step[n] = 0;
+	for (int i = n; i <= m; i++)
 	{
-		cout << e.what() << endl;
+		if (step[i] == INT_MAX)
+			continue;
+		for (int j = 2; j <= sqrt(i); j++)
+		{
+			if (i % j == 0)
+			{
+				if (i + j <= m)
+				{
+					step[j + i] = min(step[i] + 1, step[i + j]);
+				}
+				if (i + (i / j) <= m)
+				{
+					step[i + (i / j)] = min(step[i] + 1, step[i + (i / j)]);
+				}
+			}
+		}
+
 	}
+	if (step[m] == INT_MAX)
+		cout << -1;
+	else
+		cout << step[m];
 
-
-	cout << size << endl;
-	cout << size / 1024 / 1024 << "MB" << endl;
 }
