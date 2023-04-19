@@ -39,12 +39,24 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <string>
 #include <iostream>
-#include "string.h"
+//#include "string.h"
+#include <string>
+using namespace std;
 int main()
 {
+	//try
+	//{
+	//	MyString::test_MyString();
+	//}
+	//catch (const std::exception& e)
+	//{
+	//	cout << e.what() << endl;
+	//}
+	string s1("test");
 	try
 	{
-		MyString::test_MyString();
+		s1.at(100);
+		s1[100];
 	}
 	catch (const std::exception& e)
 	{
